@@ -99,16 +99,17 @@ inline void sample_1_4()
 	};
 
 
-	unsigned int VBO;
 	unsigned int* pVAO = (unsigned int*)malloc(sizeof(unsigned int));
+	unsigned int* pVBO = (unsigned int*)malloc(sizeof(unsigned int));
 	unsigned int* pEBO = (unsigned int*)malloc(sizeof(unsigned int));
+
 	glGenVertexArrays(1, pVAO);
-	glGenBuffers(1, &VBO);
+	glGenBuffers(1, pVBO);
 	glGenBuffers(1, pEBO);
 
 	glBindVertexArray(*pVAO);
 
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBindBuffer(GL_ARRAY_BUFFER, *pVBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, *pEBO);
@@ -210,7 +211,7 @@ inline void sample_1_4()
 	glDeleteTextures(1, &texture1);
 	glDeleteTextures(1, &texture2);
 	glDeleteVertexArrays(1, pVAO);
-	glDeleteBuffers(1, &VBO);
+	glDeleteBuffers(1, pVBO);
 	glDeleteBuffers(1, pEBO);
 
 	/*
